@@ -11,12 +11,9 @@ app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173", // Dev frontend
-      "https://ims-giggcl-riru.vercel.app/", // Prod frontend
-    ],
+    origin: ["http://localhost:5173", "https://ims-giggcl-riru.vercel.app"],
     credentials: true,
-    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
