@@ -1,0 +1,106 @@
+nohup: ignoring input
+
+> server@1.0.0 start
+> node src/index.js
+
+MongoDB connected: 127.0.0.1
+node:events:502
+      throw er; // Unhandled 'erroauthMiddleware called
+Authorization header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGE2NDU1NzJjMTQ3NmRmMDdhMmY1ZDUiLCJpYXQiOjE3NTU3MjcyMDh9.o4ODiFJLwdiwkaHHew7_5ODHXgqxuXG4JSJysOMSCMw
+Token decoded: { userId: '68a645572c1476df07a2f5d5', iat: 1755727208 }
+authMiddleware called
+Authorization header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGE2NDU1NzJjMTQ3NmRmMDdhMmY1ZDUiLCJpYXQiOjE3NTU3MjcyMDh9.o4ODiFJLwdiwkaHHew7_5ODHXgqxuXG4JSJysOMSCMw
+Token decoded: { userId: '68a645572c1476df07a2f5d5', iat: 1755727208 }
+authMiddleware called
+Authorization header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGE2NDU1NzJjMTQ3NmRmMDdhMmY1ZDUiLCJpYXQiOjE3NTU3MjcyMDh9.o4ODiFJLwdiwkaHHew7_5ODHXgqxuXG4JSJysOMSCMw
+Token decoded: { userId: '68a645572c1476df07a2f5d5', iat: 1755727208 }
+authMiddleware called
+Authorization header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGE2NDU1NzJjMTQ3NmRmMDdhMmY1ZDUiLCJpYXQiOjE3NTU3MjcyMDh9.o4ODiFJLwdiwkaHHew7_5ODHXgqxuXG4JSJysOMSCMw
+Token decoded: { userId: '68a645572c1476df07a2f5d5', iat: 1755727208 }
+authMiddleware called
+Authorization header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGE2NDU1NzJjMTQ3NmRmMDdhMmY1ZDUiLCJpYXQiOjE3NTU3MjcyMDh9.o4ODiFJLwdiwkaHHew7_5ODHXgqxuXG4JSJysOMSCMw
+Token decoded: { userId: '68a645572c1476df07a2f5d5', iat: 1755727208 }
+authMiddleware called
+Authorization header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGE2NDU1NzJjMTQ3NmRmMDdhMmY1ZDUiLCJpYXQiOjE3NTU3MjcyMDh9.o4ODiFJLwdiwkaHHew7_5ODHXgqxuXG4JSJysOMSCMw
+Token decoded: { userId: '68a645572c1476df07a2f5d5', iat: 1755727208 }
+authMiddleware called
+Authorization header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGE2NDU1NzJjMTQ3NmRmMDdhMmY1ZDUiLCJpYXQiOjE3NTU3MjcyMDh9.o4ODiFJLwdiwkaHHew7_5ODHXgqxuXG4JSJysOMSCMw
+Token decoded: { userId: '68a645572c1476df07a2f5d5', iat: 1755727208 }
+authMiddleware called
+Authorization header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGE2NDU1NzJjMTQ3NmRmMDdhMmY1ZDUiLCJpYXQiOjE3NTU3MjcyMDh9.o4ODiFJLwdiwkaHHew7_5ODHXgqxuXG4JSJysOMSCMw
+Token decoded: { userId: '68a645572c1476df07a2f5d5', iat: 1755727208 }
+authMiddleware called
+Authorization header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGE2NDU1NzJjMTQ3NmRmMDdhMmY1ZDUiLCJpYXQiOjE3NTU3MjcyMDh9.o4ODiFJLwdiwkaHHew7_5ODHXgqxuXG4JSJysOMSCMw
+Token decoded: { userId: '68a645572c1476df07a2f5d5', iat: 1755727208 }
+authMiddleware called
+Authorization header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGE2NDU1NzJjMTQ3NmRmMDdhMmY1ZDUiLCJpYXQiOjE3NTU3MjcyMDh9.o4ODiFJLwdiwkaHHew7_5ODHXgqxuXG4JSJysOMSCMw
+Token decoded: { userId: '68a645572c1476df07a2f5d5', iat: 1755727208 }
+authMiddleware called
+Authorization header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGE2NDU1NzJjMTQ3NmRmMDdhMmY1ZDUiLCJpYXQiOjE3NTU3MjcyMDh9.o4ODiFJLwdiwkaHHew7_5ODHXgqxuXG4JSJysOMSCMw
+Token decoded: { userId: '68a645572c1476df07a2f5d5', iat: 1755727208 }
+authMiddleware called
+Authorization header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGE2NDU1NzJjMTQ3NmRmMDdhMmY1ZDUiLCJpYXQiOjE3NTU3MjcyMDh9.o4ODiFJLwdiwkaHHew7_5ODHXgqxuXG4JSJysOMSCMw
+Token decoded: { userId: '68a645572c1476df07a2f5d5', iat: 1755727208 }
+authMiddleware called
+Authorization header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGE2NDU1NzJjMTQ3NmRmMDdhMmY1ZDUiLCJpYXQiOjE3NTU3MjcyMDh9.o4ODiFJLwdiwkaHHew7_5ODHXgqxuXG4JSJysOMSCMw
+Token decoded: { userId: '68a645572c1476df07a2f5d5', iat: 1755727208 }
+authMiddleware called
+Authorization header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGE2NDU1NzJjMTQ3NmRmMDdhMmY1ZDUiLCJpYXQiOjE3NTU3MjcyMDh9.o4ODiFJLwdiwkaHHew7_5ODHXgqxuXG4JSJysOMSCMw
+Token decoded: { userId: '68a645572c1476df07a2f5d5', iat: 1755727208 }
+authMiddleware called
+Authorization header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGE2NDU1NzJjMTQ3NmRmMDdhMmY1ZDUiLCJpYXQiOjE3NTU3MjcyMDh9.o4ODiFJLwdiwkaHHew7_5ODHXgqxuXG4JSJysOMSCMw
+Token decoded: { userId: '68a645572c1476df07a2f5d5', iat: 1755727208 }
+authMiddleware called
+Authorization header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGE2NDU1NzJjMTQ3NmRmMDdhMmY1ZDUiLCJpYXQiOjE3NTU3MjcyMDh9.o4ODiFJLwdiwkaHHew7_5ODHXgqxuXG4JSJysOMSCMw
+Token decoded: { userId: '68a645572c1476df07a2f5d5', iat: 1755727208 }
+authMiddleware called
+Authorization header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGE2NDU1NzJjMTQ3NmRmMDdhMmY1ZDUiLCJpYXQiOjE3NTU3MjcyMDh9.o4ODiFJLwdiwkaHHew7_5ODHXgqxuXG4JSJysOMSCMw
+Token decoded: { userId: '68a645572c1476df07a2f5d5', iat: 1755727208 }
+authMiddleware called
+Authorization header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGE2NDU1NzJjMTQ3NmRmMDdhMmY1ZDUiLCJpYXQiOjE3NTU3MjcyMDh9.o4ODiFJLwdiwkaHHew7_5ODHXgqxuXG4JSJysOMSCMw
+Token decoded: { userId: '68a645572c1476df07a2f5d5', iat: 1755727208 }
+authMiddleware called
+Authorization header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGE2NDU1NzJjMTQ3NmRmMDdhMmY1ZDUiLCJpYXQiOjE3NTU3MjcyMDh9.o4ODiFJLwdiwkaHHew7_5ODHXgqxuXG4JSJysOMSCMw
+Token decoded: { userId: '68a645572c1476df07a2f5d5', iat: 1755727208 }
+authMiddleware called
+Authorization header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGE2NDU1NzJjMTQ3NmRmMDdhMmY1ZDUiLCJpYXQiOjE3NTU3MjcyMDh9.o4ODiFJLwdiwkaHHew7_5ODHXgqxuXG4JSJysOMSCMw
+Token decoded: { userId: '68a645572c1476df07a2f5d5', iat: 1755727208 }
+authMiddleware called
+Authorization header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGE2NDU1NzJjMTQ3NmRmMDdhMmY1ZDUiLCJpYXQiOjE3NTU3MjcyMDh9.o4ODiFJLwdiwkaHHew7_5ODHXgqxuXG4JSJysOMSCMw
+Token decoded: { userId: '68a645572c1476df07a2f5d5', iat: 1755727208 }
+authMiddleware called
+Authorization header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGE2NDU1NzJjMTQ3NmRmMDdhMmY1ZDUiLCJpYXQiOjE3NTU3MjcyMDh9.o4ODiFJLwdiwkaHHew7_5ODHXgqxuXG4JSJysOMSCMw
+Token decoded: { userId: '68a645572c1476df07a2f5d5', iat: 1755727208 }
+authMiddleware called
+Authorization header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGE2NDU1NzJjMTQ3NmRmMDdhMmY1ZDUiLCJpYXQiOjE3NTU3MjcyMDh9.o4ODiFJLwdiwkaHHew7_5ODHXgqxuXG4JSJysOMSCMw
+Token decoded: { userId: '68a645572c1476df07a2f5d5', iat: 1755727208 }
+authMiddleware called
+Authorization header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGE2NDU1NzJjMTQ3NmRmMDdhMmY1ZDUiLCJpYXQiOjE3NTU3MjcyMDh9.o4ODiFJLwdiwkaHHew7_5ODHXgqxuXG4JSJysOMSCMw
+Token decoded: { userId: '68a645572c1476df07a2f5d5', iat: 1755727208 }
+authMiddleware called
+Authorization header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGE2NDU1NzJjMTQ3NmRmMDdhMmY1ZDUiLCJpYXQiOjE3NTU3MjcyMDh9.o4ODiFJLwdiwkaHHew7_5ODHXgqxuXG4JSJysOMSCMw
+Token decoded: { userId: '68a645572c1476df07a2f5d5', iat: 1755727208 }
+authMiddleware called
+Authorization header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGE2NDU1NzJjMTQ3NmRmMDdhMmY1ZDUiLCJpYXQiOjE3NTU3MjcyMDh9.o4ODiFJLwdiwkaHHew7_5ODHXgqxuXG4JSJysOMSCMw
+Token decoded: { userId: '68a645572c1476df07a2f5d5', iat: 1755727208 }
+authMiddleware called
+Authorization header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGE2NDU1NzJjMTQ3NmRmMDdhMmY1ZDUiLCJpYXQiOjE3NTU3MjcyMDh9.o4ODiFJLwdiwkaHHew7_5ODHXgqxuXG4JSJysOMSCMw
+Token decoded: { userId: '68a645572c1476df07a2f5d5', iat: 1755727208 }
+authMiddleware called
+Authorization header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGE2NDU1NzJjMTQ3NmRmMDdhMmY1ZDUiLCJpYXQiOjE3NTU3MjcyMDh9.o4ODiFJLwdiwkaHHew7_5ODHXgqxuXG4JSJysOMSCMw
+Token decoded: { userId: '68a645572c1476df07a2f5d5', iat: 1755727208 }
+authMiddleware called
+Authorization header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGE2NDU1NzJjMTQ3NmRmMDdhMmY1ZDUiLCJpYXQiOjE3NTU3MjcyMDh9.o4ODiFJLwdiwkaHHew7_5ODHXgqxuXG4JSJysOMSCMw
+Token decoded: { userId: '68a645572c1476df07a2f5d5', iat: 1755727208 }
+authMiddleware called
+Authorization header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGE2NDU1NzJjMTQ3NmRmMDdhMmY1ZDUiLCJpYXQiOjE3NTU3MjcyMDh9.o4ODiFJLwdiwkaHHew7_5ODHXgqxuXG4JSJysOMSCMw
+Token decoded: { userId: '68a645572c1476df07a2f5d5', iat: 1755727208 }
+authMiddleware called
+Authorization header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGE2NDU1NzJjMTQ3NmRmMDdhMmY1ZDUiLCJpYXQiOjE3NTU3MjcyMDh9.o4ODiFJLwdiwkaHHew7_5ODHXgqxuXG4JSJysOMSCMw
+Token decoded: { userId: '68a645572c1476df07a2f5d5', iat: 1755727208 }
+authMiddleware called
+Authorization header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGE2NDU1NzJjMTQ3NmRmMDdhMmY1ZDUiLCJpYXQiOjE3NTU3MjcyMDh9.o4ODiFJLwdiwkaHHew7_5ODHXgqxuXG4JSJysOMSCMw
+Token decoded: { userId: '68a645572c1476df07a2f5d5', iat: 1755727208 }
+authMiddleware called
+Authorization header: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OGE2NDU1NzJjMTQ3NmRmMDdhMmY1ZDUiLCJpYXQiOjE3NTU3MjcyMDh9.o4ODiFJLwdiwkaHHew7_5ODHXgqxuXG4JSJysOMSCMw
+Token decoded: { userId: '68a645572c1476df07a2f5d5', iat: 1755727208 }
