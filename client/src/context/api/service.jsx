@@ -10,7 +10,7 @@ const ServiceContext = createContext(null);
 const ServiceProvider = ({ children }) => {
   // Configurations
   const token = localStorage.getItem("token") || null;
-  const BASEURL = "http://localhost:3000/api";
+  const BASEURL = "https://ims-giggcl.vercel.app/";
   const resolver = {
     headers: {
       Authorization: `Bearer ${token}`,
