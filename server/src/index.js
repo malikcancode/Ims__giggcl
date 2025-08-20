@@ -9,15 +9,22 @@ import connectDB from "./config/index.js";
 const app = express();
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
+
+const allowedOrigins = ["https://ims-giggcl-riru.vercel.app"];
+
 app.use(
   cors({
-    origin: [
-      "https://ims-giggcl-riru.vercel.app",
-      "https://ims-giggcl.vercel.app",
-    ],
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    methods: "GET, POST, PUT, DELETE, PATCH, OPTIONS",
     credentials: true,
-    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
+    exposedHeaders: ["Set-Cookie"],
   })
 );
 
