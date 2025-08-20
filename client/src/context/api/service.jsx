@@ -10,6 +10,7 @@ const ServiceContext = createContext(null);
 const ServiceProvider = ({ children }) => {
   // Configurations
   const token = localStorage.getItem("token") || null;
+  /// deployed url
   const BASEURL = "https://ims-giggcl.vercel.app/";
   const resolver = {
     headers: {
