@@ -1,13 +1,11 @@
 import express from "express";
 import {
+  forgetPassword,
   login,
   logout,
   register,
+  resetPassworrd,
   updateProfile,
-  forgotPassword,
-  resetPassword,
-  verifyEmail,
-  resendVerification,
 } from "../controllers/user.controller.js";
 import authMiddleware from "../middlewares/auth.middleware.js";
 import { getInsights } from "../controllers/insights.controller.js";
@@ -48,12 +46,10 @@ const router = express.Router();
 // _______________________Auth Routes______________________
 router.post("/auth/login", login);
 router.post("/auth/register", register);
-router.post("/auth/forgot-password", forgotPassword);
-router.post("/auth/reset-password", resetPassword);
-router.post("/auth/verify-email", verifyEmail);
-router.post("/auth/resend-verification", resendVerification);
 router.get("/auth/logout", authMiddleware, logout);
 router.patch("/profile", authMiddleware, updateProfile);
+router.post("/auth/forget-password", forgetPassword);
+router.post("/auth/reset-password", resetPassworrd);
 
 // _______________________Insight Routes______________________
 router.get("/insight", authMiddleware, getInsights);

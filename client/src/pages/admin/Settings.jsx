@@ -17,10 +17,11 @@ const Settings = () => {
 
   const [formData, setFormData] = useState({
     password: "",
-    username: loggedInUser.name,
+    name: loggedInUser.name,
     email: loggedInUser.email,
     profilePicture: loggedInUser.picture,
   });
+
   const [preview, setPreview] = useState(loggedInUser.picture);
   const [isHovering, setIsHovering] = useState(false);
   const [activeTab, setActiveTab] = useState("profile");
@@ -47,7 +48,6 @@ const Settings = () => {
     updateProfile(formData);
   };
 
-  // Render different content based on active tab
   const renderTabContent = () => {
     switch (activeTab) {
       case "profile":
@@ -125,9 +125,9 @@ const Settings = () => {
                   </div>
                   <input
                     type="text"
-                    id="username"
-                    name="username"
-                    value={formData.username}
+                    id="name"
+                    name="name"
+                    value={formData.name}
                     onChange={handleChange}
                     className={`block w-full pl-10 pr-3 py-2.5 rounded-md border ${
                       theme === "dark"

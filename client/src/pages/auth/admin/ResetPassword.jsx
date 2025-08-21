@@ -1,21 +1,36 @@
 import { useState } from "react";
-import { useLocation, Link } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useService } from "../../../context/api/service";
 import { FiLock, FiArrowLeft } from "react-icons/fi";
+import toast from "react-hot-toast";
 
 function ResetPassword() {
+  const navigate = useNavigate();
   const { resetPassword, loading } = useService();
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
-  const location = useLocation();
-  const params = new URLSearchParams(location.search);
-  const token = params.get("token") || "";
+
+  const [searchParams] = useSearchParams();
+  const token = searchParams.get("token");
+  const id = searchParams.get("id");
+
+  if (!token && !id) {
+    navigate("/login");
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!token) return;
-    if (password !== confirm) return;
-    await resetPassword({ token, password });
+
+    if (password !== confirm) {
+      toast.error("Password dont match");
+      return;
+    }
+    await resetPassword({
+      adminId: id,
+      forgetPasswordToken: token,
+      newPassword: password,
+      confirmPassword: confirm,
+    });
     setPassword("");
     setConfirm("");
   };
@@ -24,8 +39,12 @@ function ResetPassword() {
     <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
       <div className="w-full max-w-md bg-white rounded-xl shadow-sm overflow-hidden border border-gray-200">
         <div className="p-8 sm:p-10 text-black">
-          <h1 className="text-2xl font-medium text-gray-900 mb-1">Reset Password</h1>
-          <p className="text-gray-500 text-sm mb-6">Enter a new password for your account</p>
+          <h1 className="text-2xl font-medium text-gray-900 mb-1">
+            Reset Password
+          </h1>
+          <p className="text-gray-500 text-sm mb-6">
+            Enter a new password for your account
+          </p>
 
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
@@ -72,7 +91,10 @@ function ResetPassword() {
           </form>
 
           <div className="mt-6 text-center text-sm text-gray-500">
-            <Link to="/login" className="font-medium text-black hover:text-gray-700 inline-flex items-center">
+            <Link
+              to="/login"
+              className="font-medium text-black hover:text-gray-700 inline-flex items-center"
+            >
               <FiArrowLeft className="mr-1" /> Back to Login
             </Link>
           </div>
@@ -83,5 +105,3 @@ function ResetPassword() {
 }
 
 export default ResetPassword;
-
-

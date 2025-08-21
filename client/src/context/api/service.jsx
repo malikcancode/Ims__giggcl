@@ -2,8 +2,6 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { createContext, useContext, useState } from "react";
-import Department from "../../pages/admin/Department";
-import Inventory from "../../pages/admin/Inventory";
 
 const ServiceContext = createContext(null);
 
@@ -11,7 +9,9 @@ const ServiceProvider = ({ children }) => {
   // Configurations
   const token = localStorage.getItem("token") || null;
   /// deployed url
-  const BASEURL = "https://ims-giggcl.vercel.app/";
+  // const BASEURL = "https://ims-giggcl.vercel.app/api";
+  const BASEURL = "http://localhost:3000/api";
+
   const resolver = {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -40,8 +40,6 @@ const ServiceProvider = ({ children }) => {
   );
   const [departmentInventory, setDepartmentInventory] = useState([]);
 
-  // console.log(inventory);
-
   // Authentication Services
 
   const register = async (credentials) => {
@@ -66,11 +64,11 @@ const ServiceProvider = ({ children }) => {
     try {
       setLoading(true);
       const { data } = await axios.post(
-        `${BASEURL}/auth/forgot-password`,
-        { email },
-        mutation
+        `${BASEURL}/auth/forget-password`,
+        {email},
+        resolver
       );
-      toast.success(data.message || "Reset link sent");
+      toast.success(data.message);
     } catch (error) {
       toast.error(error.response?.data?.message || error.message);
     } finally {
@@ -78,13 +76,13 @@ const ServiceProvider = ({ children }) => {
     }
   };
 
-  const resetPassword = async ({ token, password }) => {
+  const resetPassword = async (credentials) => {
     try {
       setLoading(true);
       const { data } = await axios.post(
         `${BASEURL}/auth/reset-password`,
-        { token, password },
-        mutation
+        credentials,
+        resolver
       );
       toast.success(data.message || "Password reset successful");
       navigate("/login");
@@ -577,6 +575,7 @@ const ServiceProvider = ({ children }) => {
         profile,
         mutation
       );
+      console.log(data);
       setLoggedInUser(data.user);
       localStorage.setItem("user", JSON.stringify(data.user));
       toast.success(data.message);

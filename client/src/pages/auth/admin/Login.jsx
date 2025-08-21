@@ -129,16 +129,16 @@ function Login() {
 
           <div className="mt-6 text-center text-sm text-gray-500 space-y-2">
             <div>
-              Don\'t have an account?{" "}
+              Forget Password ?{" "}
               <Link
-                to="/register"
+                to="/forgot-password"
                 className="font-medium text-black hover:text-gray-700 inline-flex items-center"
               >
-                Register <FiArrowRight className="ml-1" />
+                Click here <FiArrowRight className="ml-1" />
               </Link>
             </div>
             <div>
-              Go To Dept login page?{" "}
+              Go To Dept login?{" "}
               <Link
                 to="/department/login"
                 className="font-medium text-black hover:text-gray-700 inline-flex items-center"

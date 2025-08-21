@@ -1,7 +1,9 @@
-import React from "react";
+import React from 'react'
 
-function ApprovedInventoryList() {
-  return <div>ApprovedInventoryList</div>;
+const ApprovedInventoryList = () => {
+  return (
+    <div>ApprovedInventoryList</div>
+  )
 }
 
-export default ApprovedInventoryList;
+export default ApprovedInventoryList
