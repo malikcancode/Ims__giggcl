@@ -65,7 +65,7 @@ const ServiceProvider = ({ children }) => {
       setLoading(true);
       const { data } = await axios.post(
         `${BASEURL}/auth/forget-password`,
-        {email},
+        { email },
         resolver
       );
       toast.success(data.message);
@@ -609,6 +609,22 @@ const ServiceProvider = ({ children }) => {
     }
   };
 
+  const getItemsByCategory = async (categoryId) => {
+    try {
+      setLoading(true);
+      const { data } = await axios.get(
+        `${BASEURL}/category/${categoryId}/items`,
+        resolver
+      );
+      return data.items;
+    } catch (error) {
+      toast.error(error.response?.data?.message || error.message);
+      return [];
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <ServiceContext.Provider
       value={{
@@ -616,6 +632,7 @@ const ServiceProvider = ({ children }) => {
         category,
         inventory,
         loggedInUser,
+        getItemsByCategory,
         loggedInDepartment,
         requests,
         signIn,

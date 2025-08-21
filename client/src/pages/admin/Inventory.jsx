@@ -24,17 +24,21 @@ function Inventory() {
   const [productId, setProductId] = useState(null);
   const [itemToDelete, setItemToDelete] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
+
+  // form state
   const [formData, setFormData] = useState({
     name: "",
     description: "",
     category: "",
     price: "",
-    // unit: "",
     supplier: "",
     purchaseDate: "",
     quantity: "",
     previousQuantity: 0,
+    updatedDate: "", // <-- new field
+    history: [],
   });
+
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategoryId, setSelectedCategoryId] = useState("");
 
@@ -54,25 +58,37 @@ function Inventory() {
     navigate(`/manage-inventory?${params.toString()}`);
   };
 
+  // Submit
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (isEditing) {
+      // Update → increase qty, set updatedDate
       const updatedFormData = {
         ...formData,
         quantity: Number(formData.previousQuantity) + Number(formData.quantity),
+        updatedDate:
+          formData.updatedDate || new Date().toISOString().split("T")[0], // auto set if empty
       };
+
       await updateInventory({
         id: productId,
         updatedInventory: updatedFormData,
       });
     } else {
-      await createInventory(formData);
+      // Create → no updatedDate
+      await createInventory({
+        ...formData,
+        updatedDate: null,
+      });
     }
+
     clearState();
     setIsModalOpen(false);
     setIsEditing(false);
   };
 
+  // Input change
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -81,36 +97,45 @@ function Inventory() {
     }));
   };
 
+  // Reset state
   const clearState = () => {
     setFormData({
       name: "",
       description: "",
       category: "",
       price: "",
-      // unit: "",
       supplier: "",
       purchaseDate: "",
       quantity: "",
       previousQuantity: 0,
+      updatedDate: "",
+      history: [],
     });
   };
 
+  // Load product into modal
   const handleUpdateInventory = async (id) => {
     const product = await getInventoryById(id);
     if (product) {
       const purchaseDate = new Date(product.purchaseDate);
-      const formattedDate = purchaseDate.toISOString().split("T")[0];
+      const formattedPurchaseDate = purchaseDate.toISOString().split("T")[0];
+      const formattedUpdatedDate = product.updatedDate
+        ? new Date(product.updatedDate).toISOString().split("T")[0]
+        : "";
+
       setFormData({
         name: product.name,
         description: product.description,
         category: product.category,
         price: product.price,
-        // unit: product.unit,
         supplier: product.supplier,
-        purchaseDate: formattedDate,
+        purchaseDate: formattedPurchaseDate,
         quantity: product.quantity,
         previousQuantity: product.quantity,
+        updatedDate: formattedUpdatedDate,
+        history: product.history || [],
       });
+
       setIsEditing(true);
       setProductId(id);
       setIsModalOpen(true);
@@ -130,6 +155,7 @@ function Inventory() {
     }
   };
 
+  // Filter
   const filteredInventory = useMemo(() => {
     return inventory
       .filter((product) =>
@@ -138,7 +164,8 @@ function Inventory() {
       .filter((product) => {
         if (!selectedCategoryId) return true;
         const categoryIdFromObject = product.category && product.category._id;
-        const categoryNameFromObject = product.category && product.category.name;
+        const categoryNameFromObject =
+          product.category && product.category.name;
         const categoryIdFromString =
           product.category && typeof product.category === "string"
             ? product.category
@@ -153,6 +180,7 @@ function Inventory() {
       });
   }, [inventory, searchTerm, selectedCategoryId]);
 
+  // Date formatter
   const formatDate = (date) => {
     if (!date) return "";
     const d = new Date(date);
@@ -162,6 +190,7 @@ function Inventory() {
     return `${day} ${month}, ${year}`;
   };
 
+  // Load data
   useEffect(() => {
     getAllCategory();
     getAllInventory();
@@ -258,6 +287,9 @@ function Inventory() {
                     Purchase Date
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                    Updated Date
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
                     Actions
                   </th>
                 </tr>
@@ -323,6 +355,17 @@ function Inventory() {
                           {formatDate(product.purchaseDate)}
                         </div>
                       </td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        <div className="text-sm text-gray-900 dark:text-white">
+                          {product.updatedDate ? (
+                            formatDate(product.updatedDate)
+                          ) : (
+                            <span className="text-gray-400 dark:text-gray-500">
+                              —
+                            </span>
+                          )}
+                        </div>
+                      </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                         <div className="flex space-x-2">
                           <button
@@ -344,7 +387,7 @@ function Inventory() {
                 ) : (
                   <tr>
                     <td
-                      colSpan="6"
+                      colSpan="8"
                       className="px-6 py-4 text-center text-gray-500 dark:text-gray-400"
                     >
                       No products found
@@ -381,6 +424,7 @@ function Inventory() {
               </div>
               <form onSubmit={handleSubmit} className="p-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Name */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                       Product Name *
@@ -395,6 +439,7 @@ function Inventory() {
                     />
                   </div>
 
+                  {/* Category */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                       Category *
@@ -415,6 +460,7 @@ function Inventory() {
                     </select>
                   </div>
 
+                  {/* Price */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                       Price *
@@ -431,20 +477,7 @@ function Inventory() {
                     />
                   </div>
 
-                  {/* <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                      Unit *
-                    </label>
-                    <input
-                      type="text"
-                      name="unit"
-                      value={formData.unit}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white"
-                      required
-                    />
-                  </div> */}
-
+                  {/* Supplier */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                       Supplier *
@@ -459,6 +492,7 @@ function Inventory() {
                     />
                   </div>
 
+                  {/* Purchase Date */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                       Purchase Date *
@@ -473,6 +507,7 @@ function Inventory() {
                     />
                   </div>
 
+                  {/* Quantity */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                       Quantity *
@@ -487,8 +522,25 @@ function Inventory() {
                       required
                     />
                   </div>
+
+                  {/* Updated Date only in edit mode */}
+                  {isEditing && (
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                        Updated Date
+                      </label>
+                      <input
+                        type="date"
+                        name="updatedDate"
+                        value={formData.updatedDate || ""}
+                        onChange={handleInputChange}
+                        className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white"
+                      />
+                    </div>
+                  )}
                 </div>
 
+                {/* Description */}
                 <div className="mt-6">
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                     Description *
@@ -503,6 +555,7 @@ function Inventory() {
                   />
                 </div>
 
+                {/* Buttons */}
                 <div className="flex justify-end gap-3 mt-8">
                   <button
                     type="button"

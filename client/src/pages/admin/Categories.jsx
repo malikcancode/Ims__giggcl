@@ -8,6 +8,7 @@ import {
   FiLayers,
   FiTag,
   FiImage,
+  FiBox,
 } from "react-icons/fi";
 import { ThemeContext } from "../../context/theme/theme";
 
@@ -19,6 +20,9 @@ function Categories() {
   const [categoryId, setCategoryId] = useState(null);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [categoryToDelete, setCategoryToDelete] = useState(null);
+  const [isItemsModalOpen, setIsItemsModalOpen] = useState(false);
+  const [categoryItems, setCategoryItems] = useState([]);
+  const [selectedCategoryName, setSelectedCategoryName] = useState("");
 
   const {
     loading,
@@ -28,6 +32,7 @@ function Categories() {
     createCategory,
     updateCategory,
     deleteCategory,
+    getItemsByCategory,
   } = useService();
   const { theme } = useContext(ThemeContext);
 
@@ -80,6 +85,13 @@ function Categories() {
     getAllCategory();
   }, []);
 
+  const handleCategoryClick = async (item) => {
+    setSelectedCategoryName(item.name);
+    const items = await getItemsByCategory(item._id);
+    setCategoryItems(items);
+    setIsItemsModalOpen(true);
+  };
+
   return (
     <div className="p-6 max-w-7xl mx-auto">
       {/* Header */}
@@ -124,6 +136,7 @@ function Categories() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {category.map((item) => (
             <div
+              onClick={() => handleCategoryClick(item)}
               key={item._id}
               className="bg-white rounded-xl border border-gray-100 overflow-hidden hover:shadow-sm transition-all duration-300 group hover:-translate-y-1"
             >
@@ -193,6 +206,53 @@ function Categories() {
               </div>
             </div>
           ))}
+        </div>
+      )}
+
+      {isItemsModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-fadeIn">
+          <div className="bg-white rounded-2xl shadow-xl w-full max-w-7xl h-[90vh] flex flex-col">
+            {/* Header */}
+            <div className="flex justify-between items-center border-b border-gray-100 px-6 py-5 sticky top-0 bg-white z-10">
+              <h2 className="text-xl font-semibold text-gray-800">
+                Items in "{selectedCategoryName}"
+              </h2>
+              <button
+                onClick={() => setIsItemsModalOpen(false)}
+                className="text-gray-400 hover:text-gray-600 transition-colors p-1 rounded-full hover:bg-gray-100"
+              >
+                <FiX size={24} />
+              </button>
+            </div>
+
+            {/* Scrollable Content */}
+            <div className="p-6 overflow-y-auto flex-1">
+              {categoryItems.length === 0 ? (
+                <div className="text-center text-gray-500">
+                  No items found for this category.
+                </div>
+              ) : (
+                <ul className="space-y-4">
+                  {categoryItems.map((item) => (
+                    <li
+                      key={item._id}
+                      className="border rounded-lg p-4 flex flex-col"
+                    >
+                      <span className="font-semibold text-gray-800 flex items-center gap-2">
+                        <FiBox /> {item.name}
+                      </span>
+                      <span className="text-sm text-gray-500">
+                        {item.description}
+                      </span>
+                      <span className="text-xs text-gray-400">
+                        Quantity: {item.quantity} | Price: {item.price}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </div>
         </div>
       )}
 

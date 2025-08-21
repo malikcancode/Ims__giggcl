@@ -1,4 +1,5 @@
 import Category from "../schemas/category.model.js";
+import Inventory from "../schemas/inventory.model.js";
 import { catchErrors } from "../utils/index.js";
 
 const getAllCategories = catchErrors(async (req, res) => {
@@ -79,10 +80,19 @@ const deleteCategory = catchErrors(async (req, res) => {
   });
 });
 
+const getCategoryItems = catchErrors(async (req, res) => {
+  const { id } = req.params;
+  const items = await Inventory.find({ category: id });
+  return res.status(200).json({
+    success: true,
+    items,
+  });
+});
 export {
   addCategory,
   getCategoryById,
   getAllCategories,
   updateCategory,
   deleteCategory,
+  getCategoryItems,
 };

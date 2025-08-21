@@ -83,12 +83,11 @@ const forgetPassword = catchErrors(async (req, res) => {
   const resetURL = `${process.env.CLIENT_URL}/reset-password?token=${token}&id=${admin._id}`;
 
   await transporter.sendMail({
-    from: process.env.EMAIL_USER,
+    from: process.env.SMTP_USER,
     to: admin.email,
     subject: "Password Recovery",
-    text: `Dear ${admin.name},.\n\nYour password reset link is ${resetURL}\n\nBest regards,\Inventory Management`,
+    text: `Dear ${admin.name},\n\nYour password reset link is ${resetURL}\n\nBest regards,\nInventory Management`,
   });
-
   admin.forgetPasswordToken = token;
 
   await admin.save();

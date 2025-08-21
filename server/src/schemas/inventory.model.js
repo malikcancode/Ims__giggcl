@@ -30,6 +30,10 @@ const InventorySchema = new mongoose.Schema(
       type: Date,
       required: true,
     },
+    updatedDate: {
+      type: Date,
+      default: null,
+    },
     purchaseTime: [],
     supplier: {
       type: String,

@@ -18,6 +18,29 @@ const Reports = () => {
   const { category, getAllCategory, inventory, getAllInventory } = useService();
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [filteredInventory, setFilteredInventory] = useState([]); // 🔹 hold filtered data
+
+  // 🔹 Filter inventory whenever date changes
+  useEffect(() => {
+    if (!startDate && !endDate) {
+      setFilteredInventory(inventory);
+      return;
+    }
+
+    const start = startDate ? new Date(startDate) : null;
+    const end = endDate ? new Date(endDate) : null;
+    if (end) end.setHours(23, 59, 59, 999);
+
+    const filtered = inventory.filter((item) => {
+      const purchaseDate = new Date(item.purchaseDate);
+      if (isNaN(purchaseDate)) return false;
+      if (start && purchaseDate < start) return false;
+      if (end && purchaseDate > end) return false;
+      return true;
+    });
+
+    setFilteredInventory(filtered);
+  }, [startDate, endDate, inventory]);
 
   const handleExportExcel = async () => {
     if (!selectedCategory) return;
@@ -26,30 +49,18 @@ const Reports = () => {
     setError(null);
 
     try {
-      let filteredData = inventory.filter((item) => {
+      let filteredData = filteredInventory.filter((item) => {
         const idMatch = item?.category?._id === selectedCategory;
         const strMatch =
           typeof item?.category === "string" &&
           item.category === selectedCategory;
         return idMatch || strMatch;
       });
-      if (startDate && endDate) {
-        const start = new Date(startDate);
-        const end = new Date(endDate);
-        // make end inclusive up to the end of the day
-        end.setHours(23, 59, 59, 999);
-
-        filteredData = filteredData.filter((item) => {
-          const purchaseDate = new Date(item.purchaseDate);
-          return (
-            !isNaN(purchaseDate) && purchaseDate >= start && purchaseDate <= end
-          );
-        });
-      }
 
       if (filteredData.length === 0) {
         throw new Error("No items found for the selected criteria");
       }
+
       const exportData = filteredData.map((item) => ({
         Name: item.name || "N/A",
         Description: item.description || "N/A",
@@ -108,11 +119,7 @@ const Reports = () => {
         theme === "dark" ? "bg-gray-900" : "bg-gray-50"
       }`}
     >
-      <div
-        className={`max-w-7xl mx-auto rounded-xl shadow-sm overflow-hidden ${
-          theme === "dark" ? "" : ""
-        }`}
-      >
+      <div className="max-w-7xl mx-auto rounded-xl shadow-sm overflow-hidden">
         {/* Header */}
         <div
           className={`p-6 border-b ${
@@ -224,9 +231,12 @@ const Reports = () => {
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
               {category.map((cat) => {
-                const itemCount = inventory.filter(
+                // 🔹 Use filteredInventory instead of raw inventory
+                const itemCount = filteredInventory.filter(
                   (item) => item?.category?._id === cat._id
                 ).length;
+
+                if (itemCount === 0) return null; // hide empty categories when filtering
 
                 return (
                   <div

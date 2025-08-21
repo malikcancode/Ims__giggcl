@@ -50,10 +50,13 @@ const addInventory = catchErrors(async (req, res) => {
   if (existingItem) {
     existingItem.quantity += quantity;
     existingItem.purchaseDate = purchaseDate;
-    existingItem.status = existingItem.quantity > 0 ? "In Stock" : "Out of Stock";
+    existingItem.status =
+      existingItem.quantity > 0 ? "In Stock" : "Out of Stock";
     await existingItem.save();
 
-    const updatedItem = await Inventory.findById(existingItem._id).populate("category");
+    const updatedItem = await Inventory.findById(existingItem._id).populate(
+      "category"
+    );
 
     return res.status(200).json({
       success: true,
@@ -71,9 +74,12 @@ const addInventory = catchErrors(async (req, res) => {
     purchaseDate,
     supplier,
     status: quantity > 0 ? "In Stock" : "Out of Stock",
+    updatedDate: null, // <-- add this
   });
 
-  const populated = await Inventory.findById(inventory._id).populate("category");
+  const populated = await Inventory.findById(inventory._id).populate(
+    "category"
+  );
 
   return res.status(201).json({
     success: true,
@@ -117,11 +123,11 @@ const updateInventory = catchErrors(async (req, res) => {
     name,
     category,
     quantity,
-    // unit,
     price,
     purchaseDate,
     supplier,
     description,
+    updatedDate, // <-- add this
   } = req.body;
 
   const updatedInventory = await Inventory.findByIdAndUpdate(
@@ -130,12 +136,12 @@ const updateInventory = catchErrors(async (req, res) => {
       name,
       category,
       quantity,
-      // unit,
       price,
       purchaseDate,
       supplier,
       description,
       status: quantity > 0 ? "In Stock" : "Out of Stock",
+      updatedDate: updatedDate || null, // <-- set updatedDate
     },
     { new: true }
   ).populate("category");

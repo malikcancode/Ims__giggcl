@@ -24,6 +24,7 @@ import {
   getCategoryById,
   updateCategory,
   deleteCategory,
+  getCategoryItems,
 } from "../controllers/category.controller.js";
 import {
   assignInventory,
@@ -85,5 +86,6 @@ router.get("/category/:id", authMiddleware, getCategoryById);
 router.post("/category", authMiddleware, addCategory);
 router.patch("/category/:id", authMiddleware, updateCategory);
 router.delete("/category/:id", authMiddleware, deleteCategory);
+router.get("/category/:id/items", getCategoryItems);
 
 export default router;

@@ -60,11 +60,11 @@ const Layout = () => {
     //   label: "Issuance ",
     //   icon: <FiClock size={18} />,
     // },
-    {
-      path: "/department-history",
-      label: "Department History",
-      icon: <FiClock size={18} />,
-    },
+    // {
+    //   path: "/department-history",
+    //   label: "Department History",
+    //   icon: <FiClock size={18} />,
+    // },
     {
       path: "/settings",
       label: "System Settings",
